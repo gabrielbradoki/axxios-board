@@ -7,8 +7,8 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
-      clientId: process.env.GitHub_Client_ID,
-      clientSecret: process.env.GitHub_Client_Secret,
+      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
       scope: 'read:user'
     }),
     // ...add more providers here
