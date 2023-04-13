@@ -39,7 +39,7 @@ export default function Donate({ user }: DonateProps) {
         <title>Ajude a plataforma board ficar online!</title>
       </Head>
       <main className={styles.container}>
-        <Image src="/images/rocket.svg" alt="Seja Apoiador" />
+        <Image src="/images/rocket.svg" alt="Seja Apoiador" width={409} height={342} />
 
         {vip && (
         <div className={styles.vip}>
@@ -48,7 +48,7 @@ export default function Donate({ user }: DonateProps) {
         </div>
         )}
 
-        <h1>Seja um apoiador desse projeto <Image src="/images/trophy.svg" alt='Trofeu apoiador' width={65}/></h1>
+        <h1>Seja um apoiador desse projeto <Image src="/images/trophy.svg" alt='Trofeu apoiador' width={65} height={65} /></h1>
         <h3>
           Contribua com apenas <span>R$ 1,00</span>
         </h3>

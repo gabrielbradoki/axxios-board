@@ -7,23 +7,19 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
-      scope: 'read:user'
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_SECRET,
     }),
     // ...add more providers here
   ],
+  secret: process.env.JWT_SECRET,
   callbacks: {
     async session({ session, token, user, profile }) {
       // Send properties to the client, like an access_token and user id from a provider.
       try {
 
         const lastDonate = await db.collection('vip-users').doc(String(token.sub)).get().then((snapshot) => {
-          if (snapshot.exists){
-            return snapshot.data().lastDonate.toDate();
-          } else {
-            return null;
-          }
+          return snapshot.exists ? snapshot.data().lastDonate.toDate() : null;
         })
 
         session.accessToken = token.accessToken
@@ -31,7 +27,7 @@ export const authOptions = {
           ...session,
           id: token.sub,
           vip: lastDonate ? true : false,
-          lastDonate: lastDonate
+          lastDonate
         }
     } catch {
       return {
